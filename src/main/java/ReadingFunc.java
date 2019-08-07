@@ -19,6 +19,7 @@ public class ReadingFunc {
 
             while ((s = br.readLine()) != null) {
                 s = s.replaceAll("\\s+", " ");
+                s = s.replaceAll("\uFEFF", "");
 
                 n=n+s;
                 j++;
