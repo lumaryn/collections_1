@@ -3,14 +3,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class ReadingFunc {
+class ReadingFunc extends InputFileName{
 
-    private List<String> list = new ArrayList<>();
-    private int i;
-
-    public List getList(String fileName) {
+    void getList() {
         String first;
-        String last= "";
+        StringBuilder last= new StringBuilder();
         String maxRepeated = "";
         String[] arrayString;
 
@@ -21,18 +18,18 @@ public class ReadingFunc {
                 first += " ";
                 first = first.replaceAll("\\s+", " ");
                 first = first.replaceAll("\uFEFF", "");
-                last += first;
+                last.append(first);
             }
+            br.close();
 
-            arrayString = last.split("\\s");
-            i=arrayString.length;
-            list=new ArrayList(Arrays.asList(arrayString));
+            arrayString = last.toString().split("\\s");
+            List<String> list = new ArrayList(Arrays.asList(arrayString));
             Collections.sort(list);
-            System.out.println("Всего слов "+i+": "+list);
+            System.out.println("Всего слов "+ list.size()+": "+ list);
 
             Set<String> set=new LinkedHashSet<>(list);
             System.out.println("Уникальные слова "+set.size()+": "+set);
-            int count=0;
+            int count;
             int maxCount = 1;
             for(String inp: set){
                 count = Collections.frequency(list, inp);
@@ -61,10 +58,6 @@ public class ReadingFunc {
         catch(IOException e){
             System.out.println("error" + e);
         }
-        return list;
-    }
-    public int getI () {
-        return i;
     }
 }
 

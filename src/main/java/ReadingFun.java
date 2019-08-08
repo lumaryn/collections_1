@@ -1,7 +1,10 @@
+
+
 import java.io.*;
+
 import java.util.*;
 
-public class ReadingFun {
+/*public class ReadingFun {
 
     private List<String> list = new ArrayList<String>();
     private HashMap<String, String> hm = new HashMap<>();
@@ -46,9 +49,9 @@ public class ReadingFun {
 
 
 
-/*        for (i = 0; i < sws.length; i++) {
+       for (i = 0; i < sws.length; i++) {
             list.add(sws[i]);
-        }*/
+        }
         Collections.sort(list);
 
     }
@@ -63,11 +66,11 @@ public class ReadingFun {
             }
             public int getJ () {
                 return j;
-                /*for (String word : list) {
+                for (String word : list) {
                 System.out.print("hhh "+word + ": " + Collections.frequency(list, word)+" "+"/n");
-            }*/
+            }
             }}
-/*Map<String, Integer> mp= new HashMap<String, Integer>();
+Map<String, Integer> mp= new HashMap<String, Integer>();
                 int count=0;
 
             for(i=0;i<list.size();i++){
