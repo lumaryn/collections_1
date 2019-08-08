@@ -63,7 +63,25 @@ public class ReadingFun {
             }
             public int getJ () {
                 return j;
+                /*for (String word : list) {
+                System.out.print("hhh "+word + ": " + Collections.frequency(list, word)+" "+"/n");
+            }*/
             }}
+/*Map<String, Integer> mp= new HashMap<String, Integer>();
+                int count=0;
 
+            for(i=0;i<list.size();i++){
+                count=0;
+
+                for(int j=0;j<list.size();j++){
+                    if(list.get(i).equals(list.get(j))){
+                        count++;
+                    }
+                }
+
+                mp.put(list.get(i), count);
+            }
+
+            System.out.println("мож это "+mp);*/
 
 

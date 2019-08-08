@@ -1,126 +1,72 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class ReadingFunc {
 
-    private List<String> list = new ArrayList<String>();
-    private int j;
-    private String line;
-    String n="";
-    String maxRepeated = "";
-    List getList(String fileName) {
-        String s;
+    private List<String> list = new ArrayList<>();
+    private int i;
 
-        int i;
-        String[] sws;
-
+    public List getList(String fileName) {
+        String first;
+        String last= "";
+        String maxRepeated = "";
+        String[] arrayString;
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
 
-            while ((s = br.readLine()) != null) {
-                s = s.replaceAll("\\s+", " ");
-                s = s.replaceAll("\uFEFF", "");
-
-                n=n+s;
-                j++;
+            while ((first = br.readLine()) != null) {
+                first += " ";
+                first = first.replaceAll("\\s+", " ");
+                first = first.replaceAll("\uFEFF", "");
+                last += first;
             }
 
-            sws = n.split("\\s");
-            list=new ArrayList(Arrays.asList(sws));
+            arrayString = last.split("\\s");
+            i=arrayString.length;
+            list=new ArrayList(Arrays.asList(arrayString));
             Collections.sort(list);
-            System.out.println(list);
-            for (String word : list) {
-                System.out.print("hhh "+word + ": " + Collections.frequency(list, word)+" "+"/n");
-            }
+            System.out.println("Всего слов "+i+": "+list);
 
-
-
-            int sbs = 0;
-            Map<String, Integer> counterMap = new HashMap<>();
-                for (String word : list) {
-                    if(!word.isEmpty()) {
-                        Integer count = counterMap.get(word);
-                        if(count == null) {
-                            count = 0;
-                        }
-                        counterMap.put(word, ++count);
-                    }
-                }
-
-                for(String word : counterMap.keySet()) {
-                    System.out.println(word + ": " + counterMap.get(word));
-                }
-
-
-
-            Map<String, Integer> mp= new HashMap<String, Integer>();
-                int count=0;
-
-            for(i=0;i<list.size();i++){
-                count=0;
-
-                for(int j=0;j<list.size();j++){
-                    if(list.get(i).equals(list.get(j))){
-                        count++;
-                    }
-                }
-
-                mp.put(list.get(i), count);
-            }
-
-            System.out.println("мож это "+mp);
-
-
-
-
-
-            Set<String> uniqueWords = new HashSet<String>(list);
-            for (String word : uniqueWords) {
-                System.out.println("g "+word + ": " + Collections.frequency(list, word)+"/n");
-            }
-
-
-
-
-            List<String> listString = Arrays.asList(sws);
-            Set<String> setString = new HashSet<String>(listString);
-
+            Set<String> set=new LinkedHashSet<>(list);
+            System.out.println("Уникальные слова "+set.size()+": "+set);
+            int count=0;
             int maxCount = 1;
-
-
-            for(String inp: setString){
-                count = Collections.frequency(listString, inp);
+            for(String inp: set){
+                count = Collections.frequency(list, inp);
                 if(count > maxCount){
                     maxCount = count;
                     maxRepeated = inp;
-
                 }
             }
-            System.out.println("финал  "+maxRepeated+" "+maxCount);
+            System.out.println("Самое часто встречающееся слово "+maxRepeated+": "+maxCount);
 
-
-
-
-
-
-
-
-
-
+            Map<String, Integer> counterMap = new TreeMap<>();
+                for (String word : list) {
+                    if(!word.isEmpty()) {
+                        Integer coun = counterMap.get(word);
+                        if(coun == null) {
+                            coun = 0;
+                        }
+                        counterMap.put(word, ++coun);
+                    }
+                }
+                System.out.println("Cколько раз каждое слово встречается в файле: ");
+                for(String word : counterMap.keySet()) {
+                    System.out.println(word + ":" + counterMap.get(word)+" ");
+                }
         }
-
-
-
         catch(IOException e){
             System.out.println("error" + e);
         }
-
         return list;
     }
-    public int getJ () {
-        return j;
-    }}
+    public int getI () {
+        return i;
+    }
+}
 
 
 
